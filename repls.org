@@ -965,7 +965,7 @@
 
    #+BEGIN_SRC clojure
      (defproject ,,,
-       :plugins [[lein-figwheel "0.5.4-7"][lein-figwheel "0.5.4-7"]])
+       :plugins [[lein-figwheel "0.5.4-7"]])
    #+END_SRC
 
    And start it with ~lein figwheel~. This will do an initial compilation of
