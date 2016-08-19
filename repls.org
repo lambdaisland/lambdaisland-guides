@@ -20,7 +20,7 @@
 
 * Introduction
 
-  /Version 2016-08-17, 7158 words. Reading time: 47 minutes./
+  /Version 2016-08-19, 7158 words. Reading time: 47 minutes./
 
   Interactive development is at the very heart of Clojure's philosphy.
   Exploration, fast feedback, poking at and into a running system, these are the
@@ -102,6 +102,10 @@
    small fixes you can even make the edits directly on Github.
 
 ** Changelog
+
+   - *2016-08-19*
+
+     Code fix by [[https://github.com/visibletrap][Nuttanart Pornprasitsakul (visibletrap)]] [[https://github.com/lambdaisland/lambdaisland-guides/pull/1][(pull request)]]
 
    - *2016-08-17*
 
