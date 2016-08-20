@@ -20,7 +20,7 @@
 
 * Introduction
 
-  /Version 2016-08-19, 7158 words. Reading time: 47 minutes./
+  /Version 2016-08-20, 7406 words. Reading time: 49 minutes./
 
   Interactive development is at the very heart of Clojure's philosphy.
   Exploration, fast feedback, poking at and into a running system, these are the
@@ -102,6 +102,10 @@
    small fixes you can even make the edits directly on Github.
 
 ** Changelog
+
+   - *2016-08-20*
+
+     Added a stub about [[ClojureScript clients for nREPL][ClojureScript clients for nREPL]]
 
    - *2016-08-19*
 
@@ -648,6 +652,31 @@
 
     The CIDER README lists [[https://github.com/clojure/tools.nrepl#connecting-to-an-nrepl-server][editors and tools that support nREPL]].
 
+*** ClojureScript clients for nREPL
+
+    /Advanced, you can safely skip this section./
+
+    /This section is a stub, you can [[Contributing to This Guide][help by expanding it]]./
+
+    This section is about connecting to an nREPL server from a ClojureScript
+    client. If instead you want your nREPL server to use a ClojureScript
+    environment to do evaluation, see the section on [[Piggieback][Piggieback]].
+
+    By default nREPL communicates over TCP sockets, using Bencode as its data
+    format. Raw TCP sockets are not available from a browser, but they are
+    available in Node.js. You can use the [[https://www.npmjs.com/package/nrepl-client][nrepl-client]] package on NPM to connect
+    from Node.js to an nREPL server.
+
+    The nREPL transport is pluggable, so a more browser friendly alternative
+    would be to use HTTP over JSON, which is what [[https://github.com/cemerick/drawbridge][Drawbridge]] provides. It is
+    implemented as a Ring handler, so you need to use it in conjunction with a
+    Ring server adapter (Jetty, Http-kit, Aleph, ...)
+
+    Drawbridge contains an nREPL client that uses the same transport, but that
+    one is for Clojure, not ClojureScript. For a ClojureScript client you can
+    use [[https://github.com/hiredman/drawbridge-cljs][drawbridge-cljs]].
+
+
 * ClojureScript REPLs
 ** ClojureScript Built-in REPLs
 
@@ -1111,7 +1140,7 @@
   Editors and IDEs offer various degrees of REPL integration, providing a rich
   and interactive development workflow.
 
-  This section is a stub, you can [[Contributing to This Guide][help by expanding it]].
+  /This section is a stub, you can [[Contributing to This Guide][help by expanding it]]./
 
 ** Emacs
 *** inf-clojure
