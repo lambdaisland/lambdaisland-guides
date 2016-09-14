@@ -72,7 +72,7 @@
    experimentation. It's the "let's poke at it with a stick" of programming, a
    way of instantly validating, or adjusting, your concept of reality.
 
-   Clojure is especially suitable for this because its values
+   Clojure is especially suitable for this because in Clojure, you work with values.
 
 ** How does a REPL work?
 
