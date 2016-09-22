@@ -125,6 +125,17 @@
 
      First version
 
+** Todo
+
+   - Dive into ~cljs.repl/doc~ and friends. These are the equivalents of the
+     ~clojure.repl~ helpers. Planck makes these available in the ~cljs.user~
+     namespace, Figwheel does not. Try out the various ClojureScript repls and
+     see how to access these helpers.
+
+   - Add a section on Dirac / cljs-devtools.
+
+   - Add a section on boot-cljs-repl
+
 * Clojure REPLs
 ** Clojure's Built-in REPL
 *** Starting the REPL
