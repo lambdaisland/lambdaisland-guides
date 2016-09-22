@@ -46,7 +46,7 @@
   making sense of any it. CIDER was still called nREPL.el, which just added to
   the confusion. I went home with a broken setup and a broken heart.
 
-  Things have come a long way since then, so much love and hard work has gone
+  Things have come a long way since then. So much love and hard work has gone
   into the tooling surrounding Clojure it makes me giddy. Unfortunately there is
   still a lot of confusion as well, and documentation isn't always
   comprehensive. This guide seeks to remedy that. It will give you a map of the
@@ -61,14 +61,14 @@
    evaluates JavaScript, or your Terminal (Console, Command Prompt, Shell),
    which evaluates shell code.
 
-   Dynamic programming language all come with REPLs nowadays, like ~irb~ for
+   Dynamic programming languages all come with REPLs nowadays, like ~irb~ for
    Ruby, or ~iex~ for Elixir, and LISP languages in particular have a long
    history of using REPLs for interactive development.
 
 ** What is it good for?
 
    REPLs are important because they give you instant feedback. You don't have to
-   save, compile, run, just type the code and press enter. This encourages
+   save, compile, then run. Just type the code and press enter. This encourages
    experimentation. It's the "let's poke at it with a stick" of programming, a
    way of instantly validating, or adjusting, your concept of reality.
 
@@ -220,7 +220,7 @@
    Clojure. If you start a program from a terminal, then this input stream
    receives your keyboard's keystrokes.
 
-   Each process also starts with two output stream, "standard output" and
+   Each process also starts with two output streams, "standard output" and
    "standard error". Standard output (~STDOUT~, ~System.out~,
    ~clojure.core/*out*~) is where the REPL prints its results, and so they show
    up in your terminal.
