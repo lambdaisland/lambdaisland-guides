@@ -22,7 +22,7 @@
 
   /Version 2016-08-20, 7406 words. Reading time: 49 minutes./
 
-  Interactive development is at the very heart of Clojure's philosphy.
+  Interactive development is at the very heart of Clojure's philosophy.
   Exploration, fast feedback, poking at and into a running system, these are the
   bread and butter of Clojure programming, and it all starts with a humble REPL.
 
@@ -536,7 +536,7 @@
 
    As part of the incoming request the handler received a "transport" object,
    which it needs to use to reply to the client. This is how nREPL achieves
-   anynchrony. A handler can send several messages back to the client based on a
+   asynchrony. A handler can send several messages back to the client based on a
    single incoming message, possibly much later or from another thread. It only
    needs to make sure to use the transport and id of the original message.
 
@@ -1078,7 +1078,7 @@
 
   Clojure and Java have provided a solid foundation for developing
   ClojureScript, much of the Clojure infrastructure could be reused, and the
-  Google Closure Compiler, a Java project, has been indispensible for providing
+  Google Closure Compiler, a Java project, has been indispensable for providing
   optimized output.
 
   Still the dependency on a Java environment has some downsides. The startup
