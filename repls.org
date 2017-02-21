@@ -106,6 +106,12 @@
 
 ** Changelog
 
+   - *2017-02-21*
+
+     Added a section about [[Lumo][Lumo]] and [[Calvin][Calvin]], expanded the section on [[Planck][Planck]].
+
+     7966 words.
+
    - *2016-08-20*
 
      Added a stub about [[ClojureScript clients for nREPL][ClojureScript clients for nREPL]]
