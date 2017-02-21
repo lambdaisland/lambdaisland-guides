@@ -20,7 +20,7 @@
 
 * Introduction
 
-  /Version 2016-08-20, 7406 words. Reading time: 49 minutes./
+  /Version 2016-09-22, 7966 words. Reading time: 50 minutes./
 
   Interactive development is at the very heart of Clojure's philosophy.
   Exploration, fast feedback, poking at and into a running system, these are the
@@ -131,10 +131,10 @@
      ~clojure.repl~ helpers. Planck makes these available in the ~cljs.user~
      namespace, Figwheel does not. Try out the various ClojureScript repls and
      see how to access these helpers.
-
    - Add a section on Dirac / cljs-devtools.
-
    - Add a section on boot-cljs-repl
+   - Gorilla REPL
+   - crepl
 
 * Clojure REPLs
 ** Clojure's Built-in REPL
@@ -754,10 +754,10 @@
 
     The most popular JavaScript engine outside the browser is without a doubt
     Node.js. To get a Node.js-based REPL going you have a couple of options.
-    There's a [[https://github.com/bodil/cljs-noderepl][leiningen plugin called cljs-noderepl]], and an [[https://www.npmjs.com/package/cljs-repl][NPM package called
-    cljs-repl]]. Unfortunately neither has been kept up to date with the latest
-    ClojureScript version. The cljs-repl NPM makes use of bootstrapped
-    ClojureScript, something we'll cover in [[Bootstrapped ClojureScript REPLs][Bootstrapped ClojureScript REPLs]].
+    There's a [[https://github.com/bodil/cljs-noderepl][leiningen plugin called cljs-noderepl]], and then there is [[Lumo][Lumo]], a
+    standalone Node.js based REPL which will be covered in the section
+    on [[Bootstrapped ClojureScript
+     REPLs][Bootstrapped ClojureScript REPLs]].
 
     It's easy enough to do it youreslf though. To run your own node-based REPL
     simply swap out the Rhino env from the previous section with the Node.js
@@ -1105,17 +1105,105 @@
 ** Planck
 
    [[http://planck-repl.org/][Planck]] is a ClojureScript REPL that runs in your terminal and is based on
-   JavaScriptCore, the JS engine that ships with WebKit. It is currently
-   available for OS X and (if you don't mind compiling it yourself) Linux.
+   JavaScriptCore, the JS engine that ships with WebKit. It is available for Mac
+   and Linux.
 
-   Planck boots up instantly, making it a great Clojure-y REPL to have around
-   for quickly trying things out. It's very user friendly, including rich
-   line-editing, colorized and pretty-printed output, some convenient helper
-   macros, and more.
+   Planck's developer, Mike Fikes, has gone through great lengths to build a
+   polished, user-friendly product. This is one of the most "modern" Clojure*
+   REPLs, featuring colorized output, pretty printing of results, and
+   readline-like line editing and history search based on [[https://github.com/antirez/linenoise][linenoise]]. Planck also
+   makes the ~cljs.repl~ helper functions like ~doc~ and ~find-doc~ available,
+   which isn't a given in all ClojureScript REPLs.
 
-   Planck functions like typical interpreters in the unix world, you can pass it
-   the name of a script to evaluate, or use it in the "shebang" line to create
-   standalone scripts.
+   If you ever wanted to use Clojure to write scripts, but were frustrated by
+   how slow it boots up, then Planck is for you. You can even add a "shebang"
+   line to make scripts self-contained, and Planck provides a handful of
+   namespaces that expose JavaScriptCore APIs to interact with the outside
+   world.
+
+   To get started [[http://planck-repl.org/setup.html][follow the install instructions]], then simply run ~planck~ and
+   try it out!
+
+   Planck comes with comprehensive built-in documentation of all supported
+   command line flags. For more in-depth info check out [[http://planck-repl.org/guide.html][the Planck User Guide]].
+
+   #+BEGIN_SRC sh
+   $ planck -h
+   #+END_SRC
+
+   Here's an example of a Planck script that uses the Github API to show the
+   list of repositories for a given user.
+
+#+BEGIN_SRC clojure
+#!/usr/bin/env planck
+(ns stargazers.main
+  (:require [planck.http :as h]))
+
+(defn github-get [path]
+  (h/get (str "https://api.github.com" path)
+         {:headers {"User-Agent" "Plank 2.0"
+                    "Accept" "application/vnd.github.v3+json"}}))
+
+(defn get-repos [username]
+  (-> (str "/users/" username "/repos")
+      github-get
+      :body
+      js/JSON.parse
+      js->clj))
+
+(let [username (first planck.core/*command-line-args*)]
+
+  (if username
+    (doseq [repo (get-repos username)]
+      (let [{:strs [name stargazers_count watchers language description]} repo]
+        (println (str name " (" language ")\t🟆 : " stargazers_count "\t👓 : " watchers))
+        (when description
+          (println description))
+        (println)))
+
+    (-write planck.core/*err* "Usage: stargazers <github username>")))
+#+END_SRC
+
+** Lumo
+
+   Lumo has many similarities with Planck. It is a standalone ClojureScript REPL
+   suitable for scripting. It is available on Mac, Linux and Windows, so it does
+   have a leg up on Planck when it comes to platform support.
+
+   Where Planck is based on JavaScriptCore, Lumo is based on Node.js, thus
+   holding the promise of integrating and bridging the gap with the NPM
+   ecosystem.
+
+   It is still early days for Lumo, it lacks the documentation that Planck has,
+   and also doesn't yet have any of the "ergonomic" features. Nevertheless it's
+   a project to watch.
+
+   The easiest way to install Lumo is through npm:
+
+   #+BEGIN_SRC sh
+   $ npm install -g lumo-cljs
+   #+END_SRC
+
+   You can have a look at its options with
+
+   #+BEGIN_SRC sh
+   $ lumo -h
+   #+END_SRC
+
+   The only other source of information so far is a scant [[https://github.com/anmonteiro/lumo][README in the Lumo
+   repository]], and the [[https://anmonteiro.com/2016/11/the-fastest-clojure-repl-in-the-world/][Announcement Blog Post]].
+
+** Calvin
+
+   [[https://github.com/eginez/calvin][Calvin]] is not a REPL itself, but an invaluable tool when working with Planck
+   or Lumo. Both REPLs are able to load ClojureScript namespaces from JARs, but
+   you need to manually manage the classpath.
+
+   Calvin makes your life easier by parsing the ~project.clj~ file, and figuring
+   out the right classpath for the current project, so all the libraries that it
+   depends on are available from a ClojureScript REPL.
+
+   Calvin is still alpha level software.
 
 ** Replumb
 
