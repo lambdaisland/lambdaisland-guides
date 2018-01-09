@@ -91,7 +91,7 @@
    #+END_SRC
 
    First some code is READ from the input stream, then that code is EVALuated,
-   and finally the resulted is PRINTed on the output stream, before LOOPing back
+   and finally the result is PRINTed on the output stream, before LOOPing back
    and starting over again.
 
 ** Contributing to This Guide
