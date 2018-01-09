@@ -479,10 +479,8 @@
 
 *** Custom Middleware
 
-   Through "nREPL middleware" you can even implement your own operations. The
-   some notable "middlewares" are ~piggieback~, ~cider-nrepl~, and
-   ~nrepl-refactor~. Here's an example of the "eldoc" operation provided by
-   CIDER-nREPL.
+   Through "nREPL middleware" you can even implement your own operations. Some notable "middlewares" are ~piggieback~, ~cider-nrepl~, and
+   ~nrepl-refactor~. Here's an example of the "eldoc" operation provided by CIDER-nREPL.
 
    #+BEGIN_SRC clojure
      (-->
