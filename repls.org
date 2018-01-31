@@ -760,8 +760,7 @@
     Node.js. To get a Node.js-based REPL going you have a couple of options.
     There's a [[https://github.com/bodil/cljs-noderepl][leiningen plugin called cljs-noderepl]], and then there is [[Lumo][Lumo]], a
     standalone Node.js based REPL which will be covered in the section
-    on [[Bootstrapped ClojureScript
-     REPLs][Bootstrapped ClojureScript REPLs]].
+    on [[Bootstrapped ClojureScript REPLs][Bootstrapped ClojureScript REPLs]].
 
     It's easy enough to do it youreslf though. To run your own node-based REPL
     simply swap out the Rhino env from the previous section with the Node.js
