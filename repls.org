@@ -780,7 +780,7 @@
     things like access the network or work with files.
 
     If your ClojureScript project targets Node.js, you will want a REPL that has
-    your project code loaded. The [[https://github.com/clojure/clojurescript/wiki/Quick-Start#running-clojurescript-on-nodejs][ClojureScript Quick Start]] page provides more
+    your project code loaded. The [[https://clojurescript.org/guides/quick-start#running-clojurescript-on-node.js][ClojureScript Quick Start]] page provides more
     info.
 
 *** Browser connected REPL
