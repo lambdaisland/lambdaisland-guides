@@ -938,7 +938,7 @@
    [[https://github.com/cemerick/austin][Austin]] (apparently named after a [[https://en.wikipedia.org/wiki/The_Six_Million_Dollar_Man][sci-fi character from the 70's]]) is an
    alternative to the built-in browser REPL, trying to improve upon it in
    several ways. Since the project came out some other alternatives have come
-   onto the scene, notably [[Weasel][Weasel]] and [[Figwheel][Figwheel]], and unless you have specific
+   onto the scene, notably [[https://github.com/tomjakubowski/weasel][Weasel]] and [[https://github.com/bhauman/lein-figwheel][Figwheel]], and unless you have specific
    reaons to choose Austin for your REPL needs you're probably better off with
    something else. Nevertheless Austin introduced some important ideas, which
    are worth looking into.
@@ -1037,7 +1037,7 @@
    based REPL (using the ~figwheel-sidecar~ library), and the piggieback
    middleware is loaded, then Figwheel will automatically do the right thing.
 
-   Figwheel uses WebSockets just like [[Weasel][Weasel]].
+   Figwheel uses WebSockets just like [[https://github.com/tomjakubowski/weasel][Weasel]].
 
 ** cljs-nashorn
 
