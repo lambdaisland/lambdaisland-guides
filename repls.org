@@ -1154,17 +1154,18 @@
       js/JSON.parse
       js->clj))
 
-(let [username (first planck.core/*command-line-args*)]
+(defn -main [& args]
+  (let [username (first args)]
+    (if username
+      (doseq [repo (get-repos username)]
+        (let [{:strs [name stargazers_count watchers language description]} repo]
+          (println (str name " (" language ")\t🟆 : " stargazers_count "\t👓 : " watchers))
+          (when description
+            (println description))
+          (println)))
+      (println "Usage:  stargazers <github username>"))))
 
-  (if username
-    (doseq [repo (get-repos username)]
-      (let [{:strs [name stargazers_count watchers language description]} repo]
-        (println (str name " (" language ")\t🟆 : " stargazers_count "\t👓 : " watchers))
-        (when description
-          (println description))
-        (println)))
-
-    (-write planck.core/*err* "Usage: stargazers <github username>")))
+(set! *main-cli-fn* -main)
 #+END_SRC
 
 ** Lumo
