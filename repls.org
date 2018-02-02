@@ -760,8 +760,7 @@
     Node.js. To get a Node.js-based REPL going you have a couple of options.
     There's a [[https://github.com/bodil/cljs-noderepl][leiningen plugin called cljs-noderepl]], and then there is [[Lumo][Lumo]], a
     standalone Node.js based REPL which will be covered in the section
-    on [[Bootstrapped ClojureScript
-     REPLs][Bootstrapped ClojureScript REPLs]].
+    on [[Bootstrapped ClojureScript REPLs][Bootstrapped ClojureScript REPLs]].
 
     It's easy enough to do it youreslf though. To run your own node-based REPL
     simply swap out the Rhino env from the previous section with the Node.js
@@ -781,7 +780,7 @@
     things like access the network or work with files.
 
     If your ClojureScript project targets Node.js, you will want a REPL that has
-    your project code loaded. The [[https://github.com/clojure/clojurescript/wiki/Quick-Start#running-clojurescript-on-nodejs][ClojureScript Quick Start]] page provides more
+    your project code loaded. The [[https://clojurescript.org/guides/quick-start#running-clojurescript-on-node.js][ClojureScript Quick Start]] page provides more
     info.
 
 *** Browser connected REPL
@@ -1155,17 +1154,18 @@
       js/JSON.parse
       js->clj))
 
-(let [username (first planck.core/*command-line-args*)]
+(defn -main [& args]
+  (let [username (first args)]
+    (if username
+      (doseq [repo (get-repos username)]
+        (let [{:strs [name stargazers_count watchers language description]} repo]
+          (println (str name " (" language ")\t🟆 : " stargazers_count "\t👓 : " watchers))
+          (when description
+            (println description))
+          (println)))
+      (println "Usage:  stargazers <github username>"))))
 
-  (if username
-    (doseq [repo (get-repos username)]
-      (let [{:strs [name stargazers_count watchers language description]} repo]
-        (println (str name " (" language ")\t🟆 : " stargazers_count "\t👓 : " watchers))
-        (when description
-          (println description))
-        (println)))
-
-    (-write planck.core/*err* "Usage: stargazers <github username>")))
+(set! *main-cli-fn* -main)
 #+END_SRC
 
 ** Lumo
