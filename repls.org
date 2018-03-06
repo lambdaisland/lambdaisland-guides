@@ -518,7 +518,9 @@
        (fn [{:keys [id op transport] :as request}]
          (if (= op "classpath")
            (transport/send transport {:id id
-                                      :classpath (seq (.getURLs (java.lang.ClassLoader/getSystemClassLoader)))})
+                                      :classpath (->> (java.lang.ClassLoader/getSystemClassLoader)
+                                                       .getURLs
+                                                       (map str))})
            (handler request))))
 
      (set-descriptor! #'wrap-classpath
@@ -573,7 +575,7 @@
      (require '[clojure.tools.nrepl.server :as nrepl])
      (require '[classpath-nrepl.middleware :refer [wrap-classpath]])
 
-     (nrepl/start-server :handler (server/default-handler wrap-classpath))
+     (nrepl/start-server :handler (server/default-handler #'wrap-classpath))
    #+END_SRC
 
    Now start a REPL with ~lein repl~, and note the port number that Leiningen
