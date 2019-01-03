@@ -659,7 +659,7 @@
       experiment with nREPL from Emacs you can try this snippet
 
       #+BEGIN_SRC emacs-lisp
-        (nrepl-send-request '("op" "classpath") (lambda (&more) ) (car cider-connections))
+        (nrepl-send-request '("op" "classpath") (lambda (&more) ) (car (cider-connections)))
       #+END_SRC
 
       And inspect the ~*nrepl-messages*~ buffer
