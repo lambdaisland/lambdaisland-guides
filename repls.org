@@ -346,7 +346,7 @@
 
 ** nREPL
 
-   [[nREPL][https://nrepl.org/]] stands for "network REPL", and while this may sound pretty similar to a
+   [[https://nrepl.org/][nREPL]] stands for "network REPL", and while this may sound pretty similar to a
    "socket REPL", they are completely different animals.
 
    The REPLs we've seen so far are stream based, they read lines from an input
