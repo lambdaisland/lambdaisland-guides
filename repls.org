@@ -575,7 +575,7 @@
      (require '[nrepl.server :as nrepl])
      (require '[classpath-nrepl.middleware :refer [wrap-classpath]])
 
-     (nrepl/start-server :handler (server/default-handler #'wrap-classpath))
+     (nrepl/start-server :handler (nrepl/default-handler #'wrap-classpath))
    #+END_SRC
 
    Now start a REPL with ~lein repl~, and note the port number that Leiningen
